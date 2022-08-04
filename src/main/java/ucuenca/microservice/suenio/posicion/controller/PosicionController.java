@@ -11,6 +11,7 @@ import ucuenca.microservice.suenio.posicion.service.PosicionService;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin(origins="*")
 @RestController
 @RequestMapping("/api/posicion")
 public class PosicionController {
@@ -37,9 +38,6 @@ public class PosicionController {
     public ResponseEntity<List<PosicionEntity>> findListRespiracion(@PathVariable String fechaIni, @PathVariable String fechaFin){
         List<PosicionEntity> temp = new ArrayList<>();
         temp = posicionService.findListPosicion(fechaIni, fechaFin);
-        if(temp.isEmpty()){
-            return ResponseEntity.noContent().build();
-        }
         return ResponseEntity.ok(temp);
     }
 
@@ -47,9 +45,6 @@ public class PosicionController {
     public ResponseEntity<List<PosicionEntity>> findListIdUserResp(@PathVariable String id_user){
         List<PosicionEntity> temp = new ArrayList<>();
         temp = posicionService.findByIdUserPos(id_user);
-        if(temp.isEmpty()){
-            return ResponseEntity.noContent().build();
-        }
         return ResponseEntity.ok(temp);
     }
 
